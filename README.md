@@ -22,4 +22,4 @@ The regular expressions are matched without case sensitivity.
 A simple example that will search for cameras with a price below 300€ and some 1000GB SSD below 250€ would look like this:
 
     (camera);300€
-    (((ssd).*1000.*(gb)?));250€
+    (((ssd).*1000.*(gb)?)|(1000.*(gb)?.*(ssd)));250€
