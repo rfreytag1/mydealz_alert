@@ -36,12 +36,14 @@ def hasNumbers(inputstr):
 	return any(char.isdigit() for char in inputstr)
 		
 class MainClass(GObject.GObject):
-	alreadyseen = deque(maxlen=20)
-	notis = deque(maxlen=40)
 
 	def __init__(self):
 		super().__init__()
 		Notify.init("dealnoti")
+		
+		self.alreadyseen = deque(maxlen=20)
+		self.notis = deque(maxlen=40)
+		
 		GObject.timeout_add_seconds(60*5, self.on_timeout)
 
 		self.on_timeout()
