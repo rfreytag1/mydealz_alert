@@ -23,3 +23,7 @@ A simple example that will search for cameras with a price below 300€ and some
 
     (camera);300€
     (((ssd).*1000.*(gb)?)|(1000.*(gb)?.*(ssd)));250€
+
+## Ubuntu
+Since Ubuntu still has an old version of BeautifulSoup in its repositories, the search
+for deals will return no result. There's a fix for that in the branch `pre-bs4.4.0`
