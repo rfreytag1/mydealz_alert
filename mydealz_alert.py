@@ -55,7 +55,7 @@ class MainClass(GObject.GObject):
 			print("Kein Angebotsteil!")
 			return
 
-		elements = listings.find_all("a", string=re.compile("(?i).*("+needle+").*"), class_=re.compile("section-title-link"))
+		elements = listings.find_all("a", text=re.compile("(?i).*("+needle+").*"), class_=re.compile("section-title-link"))
 		deals = []
 		for deal in elements:
 			title = deal.string
