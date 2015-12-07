@@ -31,6 +31,7 @@ from collections import deque
 from gi.repository import Notify, Gtk, GObject
 import webbrowser
 import signal
+import sys
 
 def hasNumbers(inputstr):
 	return any(char.isdigit() for char in inputstr)
