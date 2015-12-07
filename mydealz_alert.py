@@ -34,7 +34,10 @@ import signal
 
 def hasNumbers(inputstr):
 	return any(char.isdigit() for char in inputstr)
-		
+
+def info(*msgs):
+	print("INFO: ", msgs, file=sys.stderr)		
+
 class MainClass(GObject.GObject):
 
 	def __init__(self):
@@ -111,13 +114,16 @@ class MainClass(GObject.GObject):
 			deals = self.findDeal(website, wanted[0], wanted[1])
 			if(len(deals) > 0):
 				#print("Deals für Filter \""+wanted[0] + " < " + str(wanted[1]) + "€\":")
+				info("Deals für Filter \""+wanted[0] + " < " + str(wanted[1]) + "€\":")
 				for deal in deals:
 					#print("\t" + deal[3] + ": " + deal[0] + "\n\t" + deal[1] + "\n\t" + deal[2] + "\n")
+					info("\t" + deal[3] + ": " + deal[0] + "\n\t" + deal[1] + "\n\t" + deal[2] + "\n")
 					dealnoti = Notify.Notification.new("MyDealz Deal gefunden",  datetime.datetime.now().strftime("%H:%M:%S\n") + deal[0] + " für " + deal[2] + "\n" + deal[3])
 					dealnoti.set_timeout(1000*60*30) #keep notification open for 30mins
 					dealnoti.add_action("visit-deal", "Deal öffnen", self.on_openlink, deal[1])
 					self.notis.append(dealnoti)
 					dealnoti.show()
+		return True
 
 	def on_openlink(self, noti, action, userdata = None):
 		print("Callback called:"+action)
